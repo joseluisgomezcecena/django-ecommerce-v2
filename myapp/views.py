@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from .models import Product
 
@@ -26,6 +27,7 @@ def add_product(request):
         Product.objects.create(name=name, description=description, price=price, image=image)
         # product = Product(name=name, description=description, price=price, image=image)
         # product.save()
+        messages.success(request, 'Contact request submitted successfully.')
         return render(request, 'myapp/add_product.html')
     else:
         return render(request, 'myapp/add_product.html')
