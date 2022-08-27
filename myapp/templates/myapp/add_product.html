@@ -1,9 +1,39 @@
-{% include 'myapp/messages.html' %}
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="text" name="name" placeholder="Name">
-    <input type="text" name="price" placeholder="price">
-    <input type="text" name="description" placeholder="description">
-    <input type="file" accept="imgage/*" name="upload" placeholder="Name">
-    <input type="submit" name="submit" value="Submit">
-</form>
+{% extends 'myapp/base.html' %}
+    {% block body %}
+
+        <section class="relative md:py-24 py-16">
+            <div class="container">
+
+                 <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="grid md:grid-cols-2 gap-4 mt-6">
+                        {% include 'myapp/messages.html' %}
+                        <div>
+                            <label class="font-semibold">Name</label>
+                            <input name="name" id="name" type="text" class="form-input mt-2" placeholder="First Name :">
+                        </div>
+
+                        <div>
+                            <label class="font-semibold">Price</label>
+                            <input name="price" id="email" type="number" class="form-input mt-2" placeholder="Your email :">
+                        </div>
+
+                        <div>
+                            <label class="font-semibold">Description</label>
+                            <input name="description"  id="phone-number" class="form-input mt-2" placeholder="Phone no. :">
+                        </div>
+
+                        <div>
+                            <label class="font-semibold">Image</label>
+                            <input type="file"  name="upload" class="clearable-file-input mt-2" accept="image/*">
+                        </div>
+
+                        <div class="grid grid-cols-1 mt-4">
+                            <input type="submit" id="submit" name="submit" class="btn btn-primary rounded-md w-full" value="Save Product">
+                        </div>
+                        <!--end grid-->
+                    </div>
+                 </form>
+            </div>
+        </section>
+    {% endblock %}
