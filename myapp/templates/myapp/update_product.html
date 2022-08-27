@@ -1,0 +1,10 @@
+{% load static %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Name" value="{{ product.name }}">
+    <input type="text" name="price" placeholder="price" value="{{ product.price }}">
+    <input type="text" name="description" placeholder="description" value="{{ product.description }}">
+    <input type="file" accept="imgage/*" name="upload" placeholder="Name">
+    <img class="image" src="{{ product.image.url }}" alt="{{ product.name }} Image" width="100">
+    <input type="submit" name="submit" value="Submit">
+</form>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Product
 
 
@@ -29,3 +29,17 @@ def add_product(request):
         return render(request, 'myapp/add_product.html')
     else:
         return render(request, 'myapp/add_product.html')
+
+
+def update_product(request, id):
+    product = Product.objects.get(id=id)
+    if request.method == 'POST':
+        product.name = request.POST['name']
+        product.description = request.POST['description']
+        product.price = request.POST['price']
+        product.image = request.FILES['upload']
+        product.save()
+        # return render(request, 'myapp/update_product.html', {'product': product})
+        return redirect('myapp:products')
+    else:
+        return render(request, 'myapp/update_product.html', {'product': product})
